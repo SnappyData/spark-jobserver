@@ -138,7 +138,8 @@ class WebApi(system: ActorSystem,
   implicit val ShortTimeout =
     Timeout(config.getDuration("spark.jobserver.short-timeout", TimeUnit.MILLISECONDS), TimeUnit.MILLISECONDS)
   val DefaultSyncTimeout = Timeout(10 seconds)
-  val DefaultJobLimit = 50
+  val DefaultJobLimit: Int = Some("spark.jobserver.default-job-limit").filter(config.hasPath)
+      .fold(50)(config.getInt)
   val StatusKey = "status"
   val ResultKey = "result"
   val ResultChunkSize = Option("spark.jobserver.result-chunk-size").filter(config.hasPath)
