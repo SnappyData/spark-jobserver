@@ -50,11 +50,6 @@ dependencies {
   compile 'org.scala-lang:scala-library:' + scalaVersion
   compile 'org.scala-lang:scala-reflect:' + scalaVersion
 
-  compile 'org.slf4j:slf4j-api:' + slf4jVersion
-  compile 'org.slf4j:slf4j-log4j12:' + slf4jVersion
-  compile 'org.slf4j:jcl-over-slf4j:' + slf4jVersion
-  compile 'org.slf4j:jul-to-slf4j:' + slf4jVersion
-
   // always use stock spark so that snappy extensions don't get accidently
   // included here in jobserver code.
   if (System.properties.containsKey('ideaBuild') && new File(rootDir, 'spark/build.gradle').exists()) {
@@ -166,7 +161,7 @@ sourceSets.main.resources.srcDirs = ['job-server/resources']
 sourceSets.test.resources.srcDirs = ['job-server/test-resources']
 
 task packageScalaDocs(type: Jar, dependsOn: scaladoc) {
-  classifier = 'javadoc'
+  archiveClassifier.set('javadoc')
   from scaladoc
 }
 if (rootProject.hasProperty('enablePublish')) {
