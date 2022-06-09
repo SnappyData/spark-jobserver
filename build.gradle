@@ -164,13 +164,3 @@ sourceSets.test.java.srcDirs = []
 
 sourceSets.main.resources.srcDirs = ['job-server/resources']
 sourceSets.test.resources.srcDirs = ['job-server/test-resources']
-
-task packageScalaDocs(type: Jar, dependsOn: scaladoc) {
-  classifier = 'javadoc'
-  from scaladoc
-}
-if (rootProject.hasProperty('enablePublish')) {
-  artifacts {
-    archives packageScalaDocs, packageSources
-  }
-}
