@@ -102,13 +102,13 @@ dependencies {
   }
 
   // akka-appDeps
+  compile "io.netty:netty:${nettyAkkaVersion}"
   compile("com.typesafe.akka:akka-slf4j_${scalaBinaryVersion}:${akkaVersion}") {
     exclude(group: 'org.scala-lang', module: 'scala-library')
     exclude(group: 'org.scala-lang', module: 'scala-reflect')
     exclude(group: 'org.scala-lang', module: 'scala-compiler')
   }
   compile("com.typesafe.akka:akka-cluster_${scalaBinaryVersion}:${akkaVersion}") {
-    exclude(group: 'com.typesafe.akka', module: 'akka-remote')
     exclude(group: 'org.scala-lang', module: 'scala-library')
     exclude(group: 'org.scala-lang', module: 'scala-reflect')
     exclude(group: 'org.scala-lang', module: 'scala-compiler')
